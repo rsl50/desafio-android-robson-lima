@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Desafio Android - Robson Lima</string>
+    <string name="LOG_TAG_APP">DesafioAndroidApp</string>
+    <string name="loading_message">Carregando dados\nPor favor aguarde...</string>
+    <string name="api_call_failure">Call Failure:</string>
+    <string name="response_code">\"Response code: \"</string>
+    <string name="response_string">\"Response: \"</string>
+    <string name="hero_thumbnail_image">Hero Thumbnail Image</string>
+</resources>

@@ -13,6 +13,7 @@ import java.security.NoSuchAlgorithmException;
 
 import static br.com.accenture.desafio_android_robson_lima.BuildConfig.PRIVATE_KEY;
 import static br.com.accenture.desafio_android_robson_lima.BuildConfig.PUBLIC_KEY;
+import static br.com.accenture.desafio_android_robson_lima.util.AppConstants.NO_DESCRIPTION;
 
 public class Util {
 
@@ -52,5 +53,13 @@ public class Util {
 
     public static void hideDialog() {
         loading.dismiss();
+    }
+
+    public static String getDescription(String description) {
+        if (description.length() > 0) {
+            return description;
+        } else {
+            return NO_DESCRIPTION;
+        }
     }
 }

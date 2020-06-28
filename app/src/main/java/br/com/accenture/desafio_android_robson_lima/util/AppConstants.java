@@ -4,6 +4,7 @@ public interface AppConstants {
     String BASE_URL = "http://gateway.marvel.com/v1/public/";
 
     String KEY_DETAILS = "details";
+    String KEY_COMICBOOK = "comicbooks";
 
     String NO_DESCRIPTION = "Sem descrição disponível.";
 

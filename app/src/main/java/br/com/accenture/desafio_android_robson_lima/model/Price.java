@@ -18,6 +18,10 @@ public class Price implements Parcelable {
     @Expose
     private Double price;
 
+    public Double getPrice() {
+        return price;
+    }
+
     protected Price(Parcel in) {
         type = in.readString();
         if (in.readByte() == 0) {
@@ -54,4 +58,5 @@ public class Price implements Parcelable {
             dest.writeDouble(price);
         }
     }
+
 }

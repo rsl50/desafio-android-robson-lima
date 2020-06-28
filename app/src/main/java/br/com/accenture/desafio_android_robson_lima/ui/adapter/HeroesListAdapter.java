@@ -53,9 +53,10 @@ public class HeroesListAdapter extends RecyclerView.Adapter<HeroesListAdapter.He
 
     private void goToHeroDetails(HeroResult hero) {
         Intent intent = new Intent(context, HeroDetailsActivity.class);
-
         intent.putExtra(KEY_DETAILS, hero);
-        context.startActivity(intent);
+
+        ActivityOptions option = ActivityOptions.makeCustomAnimation(context, R.anim.go_up, R.anim.go_down);
+        startActivity(context, intent, option.toBundle());
     }
 
     class HeroViewHolder extends RecyclerView.ViewHolder {

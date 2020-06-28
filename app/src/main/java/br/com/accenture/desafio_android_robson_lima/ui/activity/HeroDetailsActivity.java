@@ -25,6 +25,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static androidx.core.content.ContextCompat.startActivity;
 import static br.com.accenture.desafio_android_robson_lima.util.AppConstants.KEY_COMICBOOK;
 import static br.com.accenture.desafio_android_robson_lima.util.AppConstants.KEY_DETAILS;
 
@@ -46,6 +47,12 @@ public class HeroDetailsActivity extends AppCompatActivity {
 
         initializeDetailScreen();
         loadReceivedHeroData();
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.go_up, R.anim.go_down);
     }
 
     private void initializeDetailScreen() {
@@ -86,7 +93,9 @@ public class HeroDetailsActivity extends AppCompatActivity {
     private void goToComicBookDetails(ArrayList<ComicBookResult> comic) {
         Intent intent = new Intent(HeroDetailsActivity.this, ComicBookDetailsActivity.class);
         intent.putParcelableArrayListExtra(KEY_COMICBOOK, comic);
-        startActivity(intent);
+
+        ActivityOptions option = ActivityOptions.makeCustomAnimation(HeroDetailsActivity.this, R.anim.go_up, R.anim.go_down);
+        startActivity(intent, option.toBundle());
         finish();
     }
 

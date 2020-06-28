@@ -24,16 +24,16 @@ public class ComicBookData implements Parcelable {
     @SerializedName("results")
     private ArrayList<ComicBookResult> comicBookResult;
 
+    public ArrayList<ComicBookResult> getComicBookResult() {
+        return comicBookResult;
+    }
+
     protected ComicBookData(Parcel in) {
         offset = in.readInt();
         limit = in.readInt();
         total = in.readInt();
         count = in.readInt();
         comicBookResult = in.createTypedArrayList(ComicBookResult.CREATOR);
-    }
-
-    public ArrayList<ComicBookResult> getComicBookResult() {
-        return comicBookResult;
     }
 
     public static final Creator<ComicBookData> CREATOR = new Creator<ComicBookData>() {

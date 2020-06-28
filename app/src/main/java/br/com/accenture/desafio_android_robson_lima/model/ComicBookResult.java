@@ -50,10 +50,6 @@ public class ComicBookResult implements Parcelable {
         return thumbnail;
     }
 
-    public void setPrices(ArrayList<Price> prices) {
-        this.prices = prices;
-    }
-
     protected ComicBookResult(Parcel in) {
         id = in.readInt();
         title = in.readString();

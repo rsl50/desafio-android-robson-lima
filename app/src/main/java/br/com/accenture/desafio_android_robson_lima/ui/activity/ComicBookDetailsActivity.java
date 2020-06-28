@@ -37,6 +37,12 @@ public class ComicBookDetailsActivity extends AppCompatActivity {
         loadReceivedHeroData();
     }
 
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.go_up, R.anim.go_down);
+    }
+
     private void initializeDetailScreen() {
         comicBookImage = findViewById(R.id.image_comicBook);
         comicBookName = findViewById(R.id.text_comicbook_name);

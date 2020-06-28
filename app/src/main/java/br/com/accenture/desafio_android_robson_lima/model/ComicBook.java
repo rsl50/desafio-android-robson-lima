@@ -24,6 +24,14 @@ public class ComicBook implements Parcelable {
     @Expose
     private ComicBookData data;
 
+    public String getString() {
+        return etag;
+    }
+
+    public ComicBookData getData() {
+        return data;
+    }
+
     protected ComicBook(Parcel in) {
         code = in.readInt();
         status = in.readString();
@@ -42,15 +50,6 @@ public class ComicBook implements Parcelable {
             return new ComicBook[size];
         }
     };
-
-    public String getString() {
-        return etag;
-    }
-
-    public ComicBookData getData() {
-        return data;
-    }
-
 
     @Override
     public int describeContents() {

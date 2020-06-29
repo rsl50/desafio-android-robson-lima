@@ -69,5 +69,7 @@ public class HeroRetrofit {
     public HeroService getHeroService() {
         return heroService;
     }
+
+    public Retrofit getHeroRetrofit() { return retrofit; }
 }
 

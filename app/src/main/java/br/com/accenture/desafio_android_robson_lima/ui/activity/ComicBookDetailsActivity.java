@@ -20,6 +20,7 @@ import static br.com.accenture.desafio_android_robson_lima.util.AppConstants.KEY
 
 public class ComicBookDetailsActivity extends AppCompatActivity {
 
+    public static final String TITLE_APPBAR = "Detalhe HQ mais cara do personagem";
     private ImageView comicBookImage;
     private TextView comicBookName;
     private TextView comicBookPrice;
@@ -31,7 +32,7 @@ public class ComicBookDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comic_book_details);
 
-        setTitle("Revista mais cara do personagem");
+        setTitle(TITLE_APPBAR);
 
         initializeDetailScreen();
         loadReceivedHeroData();

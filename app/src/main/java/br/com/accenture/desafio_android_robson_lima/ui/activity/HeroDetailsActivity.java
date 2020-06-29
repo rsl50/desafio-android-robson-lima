@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -25,12 +24,12 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static androidx.core.content.ContextCompat.startActivity;
 import static br.com.accenture.desafio_android_robson_lima.util.AppConstants.KEY_COMICBOOK;
 import static br.com.accenture.desafio_android_robson_lima.util.AppConstants.KEY_DETAILS;
 
 public class HeroDetailsActivity extends AppCompatActivity {
 
+    public static final String TITLE_APPBAR = "Detalhes do Personagem";
     private ImageView heroImage;
     private TextView heroName;
     private TextView heroDesciption;
@@ -43,7 +42,7 @@ public class HeroDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hero_details);
 
-        setTitle("Detalhes do Personagem");
+        setTitle(TITLE_APPBAR);
 
         initializeDetailScreen();
         loadReceivedHeroData();
@@ -60,6 +59,8 @@ public class HeroDetailsActivity extends AppCompatActivity {
         heroName = findViewById(R.id.text_hero_name);
         heroDesciption = findViewById(R.id.text_hero_description);
         buttonInfo = findViewById(R.id.button_info);
+
+        buttonInfo.setEnabled(false);
     }
 
     private void loadReceivedHeroData() {
@@ -106,19 +107,21 @@ public class HeroDetailsActivity extends AppCompatActivity {
         call.enqueue(new Callback<ComicBook>() {
             @Override
             public void onResponse(Call<ComicBook> call, Response<ComicBook> response) {
+                Util.hideDialog();
+
                 if (response.isSuccessful()) {
                     comicBookList = response.body().getData().getComicBookResult();
 
+                    buttonInfo.setEnabled(true);
                     buttonInfo.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             goToComicBookDetails(comicBookList);
                         }
                     });
-
-                    Util.hideDialog();
                 } else {
-                    Log.e("DesafioAndroidApp", "Response code: " + response.code() + "Response: "+  response.message());
+                    Util.commErrorDialog(HeroDetailsActivity.this, response.message(), Util.getApiError(response.code()));
+                    Log.e(getString(R.string.LOG_TAG_APP), getString(R.string.response_code) + response.code() + getString(R.string.response_string)+  response.message());
                 }
             }
 

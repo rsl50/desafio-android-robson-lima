@@ -1,11 +1,11 @@
 package br.com.accenture.desafio_android_robson_lima.ui.activity;
 
+import android.os.Bundle;
+import android.util.Log;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.os.Bundle;
-import android.util.Log;
 
 import java.util.List;
 
@@ -22,6 +22,7 @@ import retrofit2.Response;
 
 public class HeroesListActivity extends AppCompatActivity {
 
+    public static final String TITLE_APPBAR = "Listagem de Personagens";
     private HeroesListAdapter adapter;
     private RecyclerView heroesList;
     private List<HeroResult> heroResult;
@@ -31,6 +32,8 @@ public class HeroesListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_heroes_list);
 
+        setTitle(TITLE_APPBAR);
+        
         configureRecyclerView();
         Util.showDialog(this, getString(R.string.loading_message));
 
@@ -59,6 +62,7 @@ public class HeroesListActivity extends AppCompatActivity {
                     adapter = new HeroesListAdapter(HeroesListActivity.this, heroResult);
                     heroesList.setAdapter(adapter);
                 } else {
+                    Util.commErrorDialog(HeroesListActivity.this, response.message(), Util.getApiError(response.code()));
                     Log.e(getString(R.string.LOG_TAG_APP), getString(R.string.response_code) + response.code() + getString(R.string.response_string)+  response.message());
                 }
 
@@ -68,6 +72,9 @@ public class HeroesListActivity extends AppCompatActivity {
             public void onFailure(Call<Hero> call, Throwable t) {
                 Util.hideDialog();
 
+                if (!Util.isNetworkAvailable(HeroesListActivity.this)) {
+                    Util.commErrorDialog(HeroesListActivity.this, getString(R.string.no_connection), getString(R.string.retry_connection));
+                }
                 Log.e(getString(R.string.LOG_TAG_APP), getString(R.string.api_call_failure) + t.getMessage());
             }
         });

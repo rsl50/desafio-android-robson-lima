@@ -38,7 +38,7 @@ Para o desenvolvimento do projeto foi utilizada uma stack com as seguintes tecno
 
 ## 💻 Projeto
 
-O app é um projeto que visa exibir uma listagem de personagem a partir da comunicação com a MARVEL API (http://gateway.marvel.com/v1/public/characters), além disso é possível visualizar informações detalhadas dos Personagens (Foto, Nome, Descrição) e visualizar a revista mais cara do personagem selecionado (http://gateway.marvel.com/v1/public/{characterId}/comics).
+O app é um projeto que visa exibir uma listagem de personagens a partir da comunicação com a MARVEL API (http://gateway.marvel.com/v1/public/characters), além disso é possível visualizar informações detalhadas dos personagens (Foto, Nome, Descrição) e visualizar a revista mais cara do personagem selecionado pelo usuário (http://gateway.marvel.com/v1/public/{characterId}/comics).
 
 
 ## 🔖 Screenshots

@@ -33,7 +33,7 @@ public class HeroDetailsActivity extends AppCompatActivity {
     private ImageView heroImage;
     private TextView heroName;
     private TextView heroDesciption;
-    private Button buttonInfo;
+    private Button buttonExpensiveComicBook;
     private HeroResult heroReceived;
     private ArrayList<ComicBookResult> comicBookList;
 
@@ -45,6 +45,7 @@ public class HeroDetailsActivity extends AppCompatActivity {
         setTitle(TITLE_APPBAR);
 
         initializeDetailScreen();
+        Util.showDialog(this, getString(R.string.loading_message));
         loadReceivedHeroData();
     }
 
@@ -58,9 +59,9 @@ public class HeroDetailsActivity extends AppCompatActivity {
         heroImage = findViewById(R.id.image_hero);
         heroName = findViewById(R.id.text_hero_name);
         heroDesciption = findViewById(R.id.text_hero_description);
-        buttonInfo = findViewById(R.id.button_info);
+        buttonExpensiveComicBook = findViewById(R.id.button_expensive_comic_book);
 
-        buttonInfo.setEnabled(false);
+        buttonExpensiveComicBook.setVisibility(View.INVISIBLE);
     }
 
     private void loadReceivedHeroData() {
@@ -76,10 +77,8 @@ public class HeroDetailsActivity extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Util.showDialog(HeroDetailsActivity.this, getString(R.string.loading_message));
                             loadHeroImage(heroReceived);
                             getHeroComics(heroReceived.getId());
-                            Util.hideDialog();
                         }
                     });
                 }
@@ -97,7 +96,6 @@ public class HeroDetailsActivity extends AppCompatActivity {
 
         ActivityOptions option = ActivityOptions.makeCustomAnimation(HeroDetailsActivity.this, R.anim.go_up, R.anim.go_down);
         startActivity(intent, option.toBundle());
-        finish();
     }
 
     private void getHeroComics(int heroId) {
@@ -107,22 +105,24 @@ public class HeroDetailsActivity extends AppCompatActivity {
         call.enqueue(new Callback<ComicBook>() {
             @Override
             public void onResponse(Call<ComicBook> call, Response<ComicBook> response) {
-                Util.hideDialog();
-
                 if (response.isSuccessful()) {
                     comicBookList = response.body().getData().getComicBookResult();
 
-                    buttonInfo.setEnabled(true);
-                    buttonInfo.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            goToComicBookDetails(comicBookList);
-                        }
-                    });
+                    if (comicBookList.size() > 0) {
+                        buttonExpensiveComicBook.setVisibility(View.VISIBLE);
+                        buttonExpensiveComicBook.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                goToComicBookDetails(comicBookList);
+                            }
+                        });
+                    }
                 } else {
                     Util.commErrorDialog(HeroDetailsActivity.this, response.message(), Util.getApiError(response.code()));
                     Log.e(getString(R.string.LOG_TAG_APP), getString(R.string.response_code) + response.code() + getString(R.string.response_string)+  response.message());
                 }
+
+                Util.hideDialog();
             }
 
             @Override

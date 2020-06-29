@@ -34,6 +34,14 @@ public class HeroData implements Parcelable {
         return heroResult;
     }
 
+    public int getCount() {
+        return count;
+    }
+
+    public int getTotal() {
+        return  total;
+    }
+
     protected HeroData(Parcel in) {
         offset = in.readInt();
         limit = in.readInt();

@@ -103,14 +103,16 @@ public class Util {
         return false;
     }
 
-    public static void commErrorDialog(Context context, String title, String message){
+    public static boolean commErrorDialog(Context context, String title, String message){
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        final boolean[] choice = {false};
 
         builder.setTitle(title)
                 .setMessage(message + context.getString(R.string.retry_string))
                 .setPositiveButton(context.getString(R.string.option_yes), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        choice[0] = true;
                         dialog.dismiss();
                         Util.showDialog(context, context.getString(R.string.loading_message));
                     }
@@ -124,6 +126,8 @@ public class Util {
 
         AlertDialog dialog = builder.create();
         dialog.show();
+
+        return choice[0];
     }
 
     public static String getApiError (int erroCode) {

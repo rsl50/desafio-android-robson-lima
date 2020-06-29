@@ -3,17 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/parent_layout"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
     android:background="@android:color/transparent">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_view_hero"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="150dp"
         app:cardCornerRadius="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -30,7 +31,7 @@
         android:id="@+id/label_hero_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Heroe Name"
+        android:text="Nome do Herói"
         android:textAlignment="center"
         android:textColor="@android:color/white"
         android:textSize="18dp"

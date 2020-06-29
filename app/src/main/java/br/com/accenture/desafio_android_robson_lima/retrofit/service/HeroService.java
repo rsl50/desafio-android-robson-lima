@@ -5,6 +5,7 @@ import br.com.accenture.desafio_android_robson_lima.model.Hero;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface HeroService {
     @GET("characters")
@@ -12,4 +13,7 @@ public interface HeroService {
 
     @GET("characters/{heroId}/comics")
     Call<ComicBook> getComicBooks(@Path("heroId") int heroId);
+
+    @GET("characters?")
+    Call<Hero> getHeroesListOffset(@Query("offset") int offset);
 }

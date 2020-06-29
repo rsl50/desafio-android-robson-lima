@@ -17,4 +17,6 @@ public interface AppConstants {
     String GATEWAY_TIMEOUT = "Gateway Timeout: Timeout no gateway.";
     String UNKNOW_ERROR = "Erro não encontrado/desconhecido.";
 
+    int OFFSET_VALUE = 20;
+
 }

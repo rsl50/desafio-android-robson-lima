@@ -35,6 +35,7 @@ public class ComicBookDetailsActivity extends AppCompatActivity {
         setTitle(TITLE_APPBAR);
 
         initializeDetailScreen();
+        Util.showDialog(this, getString(R.string.loading_message));
         loadReceivedHeroData();
     }
 
@@ -65,6 +66,7 @@ public class ComicBookDetailsActivity extends AppCompatActivity {
 
             comicBookPrice.setText(DecimalFormat.getCurrencyInstance().format(highestPrice));
             loadComicBookImage(comicBookResults.get(highestPriceIndex));
+            Util.hideDialog();
         }
     }
 

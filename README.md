@@ -32,8 +32,8 @@
 Para o desenvolvimento do projeto foi utilizada uma stack com as seguintes tecnologias:
 
 - :earth_americas: **[Retrofit](https://square.github.io/retrofit/)** — Cliente HTTP para Android e Java
-- :earth_americas: **[OkHttp](https://square.github.io/okhttp/)** — Um cliente HTTP & HTTP/2 client for Android and Java
-- 💅 **[Picasso](https://square.github.io/picasso/)** — Um biblioteca poderosa para download e caching de imagens para Android
+- :earth_americas: **[OkHttp](https://square.github.io/okhttp/)** — Um cliente HTTP & HTTP/2 para Android e Java
+- 💅 **[Picasso](https://square.github.io/picasso/)** — Uma biblioteca poderosa para download e caching de imagens para Android
 - ⚛️ **[Constraint Layout](https://developer.android.com/training/constraint-layout)** — Layout para criar UI responsiva
 
 ## 💻 Projeto
